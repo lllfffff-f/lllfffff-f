@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "_说明": [
+    "protect: 保护规则（白名单），命中任一条件即绝对不会被终止",
+    "match:   清理规则，只有显式命中的进程才会被列入待终止清单",
+    "kill:    终止行为参数",
+    "安全约定：默认 match 为空，即默认不清理任何进程，请按需填写后再执行"
+  ],
+  "protect": {
+    "system_critical": true,
+    "editors_and_terminals": true,
+    "self_and_ancestors": true,
+    "names": [
+      "Hearthstone.exe",
+      "Battle.net.exe",
+      "Agent.exe",
+      "WeChat.exe",
+      "WeChatAppEx.exe",
+      "QQ.exe"
+    ],
+    "name_patterns": [
+      "^Microsoft\\.?",
+      "^Windows",
+      "^NVIDIA",
+      "^Intel",
+      "^AMD",
+      "^Realtek"
+    ],
+    "path_prefixes": [
+      "C:\\Windows\\",
+      "C:\\Program Files\\",
+      "C:\\Program Files (x86)\\"
+    ],
+    "users": []
+  },
+  "match": {
+    "names": [],
+    "name_patterns": [],
+    "cmdline_patterns": [],
+    "min_memory_mb": 100,
+    "max_count": 50,
+    "excluded_names": []
+  },
+  "kill": {
+    "grace_period_sec": 5,
+    "force": false,
+    "dry_run_default": true
+  },
+  "_示例_取消注释后可启用": {
+    "match_names": ["chrome.exe", "msedge.exe", "firefox.exe"],
+    "match_name_patterns": ["^.*helper$", "^.*updater.*$"]
+  }
+}

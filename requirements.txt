@@ -1,0 +1,13 @@
+# process-cleaner 运行期依赖
+#
+# 核心功能仅依赖 Python 标准库（Python >= 3.9），克隆后无需 pip install 即可运行。
+# 本文件保留给「不使用 pyproject 的传统安装方式」，与 pyproject.toml 中的
+# dependencies = [] 保持一致（零硬依赖）。
+#
+# 可选增强 psutil：更准确的内存占用（RSS）与可执行文件路径（启用 path_prefixes 规则）。
+# 三种方式任选其一：
+#   pip install -e .[full]        # 推荐：随项目一起安装（见 pyproject.toml）
+#   pip install psutil>=5.9.0     # 单独安装
+#   （完全不装也能运行，自动回退 tasklist / ps 命令行模式）
+#
+# psutil>=5.9.0

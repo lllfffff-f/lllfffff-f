@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "process-cleaner"
+version = "1.1.0"
+description = "一键清理后台进程的命令行工具（白名单优先、默认预览、可审计）"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Administrator" }]
+keywords = ["process", "cleaner", "cli", "windows"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Environment :: Console",
+]
+
+# 运行期零依赖：核心功能仅用标准库，离线环境也能 pip 安装并运行。
+dependencies = []
+
+# 可选增强：psutil 提供更准确的内存占用与可执行文件路径（启用 path_prefixes 规则）。
+[project.optional-dependencies]
+full = ["psutil>=5.9.0"]
+build = ["pyinstaller>=6.0"]
+dev = ["psutil>=5.9.0", "pyinstaller>=6.0", "pytest>=7.0"]
+
+[project.scripts]
+pcleaner = "process_cleaner.cli:main"
+
+[project.urls]
+Documentation = "docs/DESIGN.md"
+
+[tool.setuptools]
+# src-layout：包名与导入名分离，避免误把 tests 打进发行包
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["process_cleaner*"]

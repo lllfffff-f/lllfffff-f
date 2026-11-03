@@ -1,0 +1,14 @@
+# 开发/测试/打包依赖（运行程序本身不需要）
+#
+# 测试使用标准库 unittest 编写，离线环境也可直接运行：
+#     python -m unittest discover -s tests -v
+# 若环境可联网，安装 pytest 后可用 `pytest tests` 获得更友好的报告。
+#
+# 更推荐直接使用 pyproject.toml 的 extras：
+#     pip install -e .[dev]     # psutil + pyinstaller + pytest
+#     pip install -e .[full]    # 仅 psutil 增强
+#     pip install -e .[build]   # 仅打包 exe 所需
+-r requirements.txt
+# pytest>=7.0
+# psutil>=5.9.0
+# pyinstaller>=6.0
